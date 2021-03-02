@@ -300,7 +300,7 @@ PRODUCT_PACKAGES += \
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-havoc
+    $(LOCAL_PATH)/overlay-evo
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 
@@ -326,6 +326,10 @@ PRODUCT_COPY_FILES += \
 # RenderScript HAL
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl
+
+# Remove unwanted packages
+PRODUCT_PACKAGES += \
+    RemovePackages
 
 # RIL
 PRODUCT_PACKAGES += \
@@ -456,3 +460,9 @@ PRODUCT_PACKAGES += \
     XiaomiParts \
     init.xiaomiparts.rc \
     init.xiaomiparts.sh
+
+# Gapps
+PRODUCT_PACKAGES += \
+   Drive \
+   Maps \
+   PrebuiltGmail
