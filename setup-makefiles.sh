@@ -27,18 +27,24 @@ setup_vendor "${DEVICE_COMMON}" "${VENDOR}" "${ANDROID_ROOT}" true
 # Warning headers and guards
 write_headers "curtana excalibur gram joyeuse miatoll"
 
+# Qualcomm BSP blobs
+write_makefiles "${MY_DIR}/proprietary-files-qc.txt" true
+
 # The standard common blobs
 write_makefiles "${MY_DIR}/proprietary-files.txt" true
 
 # Finish
 write_footers
 
-if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
+if [ -s "${MY_DIR}/../${DEVICE}/proprietary-files-qc.txt" ] && [ -s "${MY_DIR}/../${DEVICE}/proprietary-files.txt" ]; then
     # Reinitialize the helper for device
     setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false
 
     # Warning headers and guards
     write_headers
+
+    # Qualcomm BSP blobs
+    write_makefiles "${MY_DIR}/../${DEVICE}/proprietary-files-qc.txt" true
 
     # The standard device blobs
     write_makefiles "${MY_DIR}/../${DEVICE}/proprietary-files.txt" true
